@@ -1,19 +1,46 @@
 import React from "react";
 import { View,SafeAreaView ,StyleSheet} from "react-native";
 import ContactRow from "../components/ContactRows";
+import Separator from "../components/Separtor";
+
 
 const Chats = () =>{
     return (
         <SafeAreaView>
-            <ContactRow/>
-            <View style={styles.serprator}></View>   
+            <ContactRow
+            
+                name="Ömer KAHRAMAN"
+                subtitle="React NATIVE"
+                onPress={() =>{
+                    alert('Hi, Ömer KAHRAMAN')
+                }}
+            
+            />
+           <Separator/>  
 
-            <ContactRow/>
-            <View style={styles.serprator}></View>  
+            <ContactRow
+            
+                name="Dilara Bulut"
+                subtitle="React NATIVE"
+                onPress={() =>{
+                    alert('Hi, Dilara Bulut')
+                }}
+                
+                
 
-            <ContactRow/>
-            <View style={styles.serprator}></View>  
-                    
+            />
+            <Separator/>  
+
+            <ContactRow
+            
+                name="Aysegul Saygi"
+                subtitle="React NATIVE"
+                onPress={() =>{
+                    alert('Hi, Aysegul Saygi')
+                }}
+            
+            />
+            <Separator/>
                  
         </SafeAreaView>
     );
@@ -21,38 +48,7 @@ const Chats = () =>{
 
 
 const styles = StyleSheet.create({
-    row:{
-        flexDirection:'row',
-        alignItems:'center',
-        paddingHorizontal:16,
-        paddingVertical:20
-        
-    },
-    avatar:{
-        width:56,
-        height:56,
-        backgroundColor:'#7C4DFF',
-        borderRadius:28,
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    avatarLabel:{
-        fontSize:20,
-        color:'white'
-    },
-    textsContainer:{
-        flex:1,
-        marginStart:16
-       
-    },
-    name:{
-        fontSize:16,
-
-    },
-    subtitle:{
-        marginTop:2,
-        color:'#565656'
-    },
+     
     serprator:{
         height: StyleSheet.hairlineWidth,
         backgroundColor:'gray',
