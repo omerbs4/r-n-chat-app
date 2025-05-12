@@ -1,61 +1,44 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { View,SafeAreaView ,StyleSheet} from "react-native";
 import ContactRow from "../components/ContactRows";
 import Separator from "../components/Separtor";
 
 
-const Chats = () =>{
+const Chats = ({navigation}) =>{
+
+    useEffect(()=>{
+        const isLoggdIn = false;
+        if(!isLoggdIn){
+            navigation.navigate("Signup");
+        }
+    },[]);
     return (
         <SafeAreaView>
-            <ContactRow
-            
+            <ContactRow           
                 name="Ömer KAHRAMAN"
                 subtitle="React NATIVE"
                 onPress={() =>{
-                    alert('Hi, Ömer KAHRAMAN')
-                }}
-            
+                    navigation.navigate('Chat');
+                }}           
             />
            <Separator/>  
 
-            <ContactRow
-            
+            <ContactRow            
                 name="Dilara Bulut"
                 subtitle="React NATIVE"
                 onPress={() =>{
-                    alert('Hi, Dilara Bulut')
+                    navigation.navigate('Chat');
                 }}
-                
-                
-
             />
-            <Separator/>  
-
-            <ContactRow
-            
-                name="Aysegul Saygi"
-                subtitle="React NATIVE"
-                onPress={() =>{
-                    alert('Hi, Aysegul Saygi')
-                }}
-            
-            />
-            <Separator/>
-                 
+            <Separator/>                  
         </SafeAreaView>
     );
 };
-
-
-const styles = StyleSheet.create({
-     
+const styles = StyleSheet.create({    
     serprator:{
         height: StyleSheet.hairlineWidth,
         backgroundColor:'gray',
         marginStart:16
     }
 })
-
-
-
 export default Chats;

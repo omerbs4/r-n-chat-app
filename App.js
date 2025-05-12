@@ -6,14 +6,17 @@ import Chats from './screens/chats'
 import Settings from "./screens/Settings";
 import {Ionicons} from '@expo/vector-icons'
 import { colors } from "./config/constants";
+import Signup from "./screens/SignUp";
+import Chat from "./screens/Chat";
 
 
 const ChatsStack = createStackNavigator()
 
 const ChatsScreen =()=>{
   return(
-    <ChatsStack.Navigator>
+    <ChatsStack.Navigator screenOptions={{headerShown:false}}>
       <ChatsStack.Screen name="Chats" component={Chats}/>
+      <ChatsStack.Screen name="Chat" component={Chat}/>
     </ChatsStack.Navigator>
   )
 }
@@ -63,10 +66,12 @@ const MainStack = createStackNavigator()
 const App =()=>{
   return(
     <NavigationContainer>
-      <MainStack.Navigator screenOptions={{headerShown:false}}>
-
+      <MainStack.Navigator screenOptions={{
+        headerShown:false,
+        presentation:'modal'
+        }}> 
       <MainStack.Screen name="Tabs" component={TabsScreen}/>
-
+      <MainStack.Screen name="Signup" component={Signup}/>
       </MainStack.Navigator>
     </NavigationContainer>
   )
