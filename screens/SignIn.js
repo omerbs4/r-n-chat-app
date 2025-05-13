@@ -2,28 +2,27 @@ import React, { useState } from "react";
 import { colors } from "../config/constants";
 import { Text, View, SafeAreaView, StyleSheet, TextInput, Alert } from "react-native";
 import Button from "../components/Button";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase"; // Firebase config dosyan doğru şekilde yapılandırılmış olmalı
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase"; // Firebase bağlantı dosyan
 import { useNavigation } from "@react-navigation/native";
 
-const Signup = () => {
+const Login = () => {
   const navigation = useNavigation();
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = async () => {
-    if (!name || !email || !password) {
+  const handleLogin = async () => {
+    if (!email || !password) {
       Alert.alert("Hata", "Lütfen tüm alanları doldurun");
       return;
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigation.replace("Chat"); // Girişten sonra chat ekranına yönlendir
+      await signInWithEmailAndPassword(auth, email, password);
+      navigation.replace("Chat"); // Başarılı girişten sonra Chat ekranına git
     } catch (error) {
-      Alert.alert("Hata", error.message);
+      Alert.alert("Giriş Başarısız", error.message);
     }
   };
 
@@ -31,13 +30,8 @@ const Signup = () => {
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.contentContainer}>
-          <Text style={styles.title}>Create New Account</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your name"
-            value={name}
-            onChangeText={setName}
-          />
+          <Text style={styles.title}>Welcome Back</Text>
+
           <TextInput
             style={styles.input}
             placeholder="Enter your email"
@@ -55,11 +49,11 @@ const Signup = () => {
 
           <View style={styles.buttonsContainer}>
             <Button
-              title="Sign In"
+              title="Sign Up"
               varient="secondary"
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate("Signup")}
             />
-            <Button title="Sign Up" varient="primary" onPress={handleSignUp} />
+            <Button title="Login" varient="primary" onPress={handleLogin} />
           </View>
         </View>
       </SafeAreaView>
@@ -97,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Signup;
+export default Login;
